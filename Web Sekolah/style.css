@@ -1,0 +1,518 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f7fb;
+    color: #263238;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #1976d2;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 8%;
+    min-height: 115px;
+}
+
+.header-kiri {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.header-kiri img {
+    width: 78px;
+    height: 78px;
+    object-fit: contain;
+}
+
+.identitas h1 {
+    margin: 0;
+    font-size: 27px;
+}
+
+.identitas p {
+    margin: 5px 0 0;
+    font-size: 14px;
+}
+
+nav {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 8px 0;
+}
+
+nav a:hover,
+nav a.aktif {
+    border-bottom: 3px solid white;
+}
+
+.hero {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 50px;
+}
+
+.hero-text .label,
+.label {
+    color: #1976d2;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 13px;
+}
+
+.hero-text h2 {
+    font-size: 46px;
+    line-height: 1.15;
+    margin: 10px 0 20px;
+    color: #123c66;
+}
+
+.hero-text h2 span {
+    color: #1976d2;
+}
+
+.hero-text p:not(.label) {
+    max-width: 550px;
+    color: #555;
+    font-size: 17px;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 370px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.tombol {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 22px;
+    background-color: #1976d2;
+    color: white;
+    text-decoration: none;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.tombol:hover {
+    background-color: #125ca5;
+}
+
+.info {
+    max-width: 1100px;
+    margin: 20px auto 70px;
+    padding: 0 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.info-card {
+    background-color: white;
+    padding: 25px 15px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+    border-top: 4px solid #1976d2;
+}
+
+.info-card h3 {
+    margin: 0;
+    color: #1976d2;
+    font-size: 28px;
+}
+
+.info-card p {
+    margin: 5px 0 0;
+    color: #555;
+}
+
+.sambutan {
+    max-width: 1100px;
+    margin: 0 auto 80px;
+    padding: 45px;
+    background-color: white;
+    border-radius: 18px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 50px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.sambutan-image img {
+    width: 100%;
+    height: 390px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.sambutan-text h2 {
+    font-size: 32px;
+    color: #123c66;
+    margin-top: 5px;
+}
+
+.sambutan-text h3 {
+    color: #1976d2;
+    margin-bottom: 0;
+}
+
+.visi-misi {
+    max-width: 1100px;
+    margin: 0 auto 80px;
+    padding: 45px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    align-items: stretch;
+}
+
+.visi,
+.misi {
+    background-color: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+    min-height: 430px;
+}
+
+.visi h2,
+.misi h2 {
+    color: #123c66;
+    margin-top: 5px;
+}
+
+.misi li {
+    margin-bottom: 10px;
+}
+
+.kegiatan {
+    max-width: 1100px;
+    margin: 0 auto 80px;
+    padding: 0 30px;
+}
+
+.judul-section {
+    margin-bottom: 30px;
+}
+
+.judul-section h2 {
+    font-size: 32px;
+    color: #123c66;
+    margin: 5px 0;
+}
+
+.kegiatan-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.kegiatan-card {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+}
+
+.kegiatan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.kegiatan-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.kegiatan-card h3 {
+    color: #123c66;
+    padding: 0 20px;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-size: 20px;
+}
+
+.kegiatan-card p {
+    padding: 0 20px;
+    color: #666;
+    margin-top: 0;
+}
+
+.link-kegiatan {
+    display: inline-block;
+    margin: 8px 20px 22px;
+    color: #1976d2;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.link-kegiatan:hover {
+    color: #125ca5;
+    text-decoration: underline;
+}
+
+.page-title {
+    text-align: center;
+    padding: 70px 20px 40px;
+}
+
+.page-title h2 {
+    font-size: 42px;
+    color: #123c66;
+    margin: 5px 0;
+}
+
+.jurusan-grid {
+    max-width: 1100px;
+    margin: 20px auto 70px;
+    padding: 0 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.jurusan-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    border-top: 5px solid #1976d2;
+}
+
+.nomor {
+    color: #1976d2;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.jurusan-card h2 {
+    color: #123c66;
+    font-size: 22px;
+}
+
+.singkatan {
+    color: #1976d2;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.jurusan-card li {
+    margin-bottom: 5px;
+}
+
+.data-siswa {
+    max-width: 1000px;
+    margin: 0 auto 80px;
+    padding: 0 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+th {
+    background-color: #1976d2;
+    color: white;
+    padding: 15px;
+}
+
+td {
+    padding: 14px;
+    border: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f7fc;
+}
+
+.kontak-container {
+    max-width: 1100px;
+    margin: 20px auto 80px;
+    padding: 0 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.kontak-info,
+.form-container {
+    background-color: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.kontak-info h2,
+.form-container h2 {
+    color: #123c66;
+}
+
+.kontak-item {
+    margin: 25px 0;
+}
+
+.kontak-item h3 {
+    color: #1976d2;
+    margin-bottom: 5px;
+}
+
+form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 13px 14px;
+    margin-top: 7px;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #1976d2;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #125ca5;
+}
+
+footer {
+    background-color: #123c66;
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+    margin-top: 50px;
+}
+
+footer h3 {
+    margin: 0;
+}
+
+footer p {
+    margin: 7px 0;
+}
+
+@media (max-width: 800px) {
+
+    header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .header-kiri {
+        flex-direction: column;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero,
+    .sambutan,
+    .visi-misi,
+    .kontak-container {
+        grid-template-columns: 1fr;
+    }
+
+    .info,
+    .jurusan-grid,
+    .kegiatan-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-text h2 {
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .info,
+    .jurusan-grid,
+    .kegiatan-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero,
+    .sambutan,
+    .visi-misi,
+    .kontak-container {
+        padding: 25px;
+    }
+
+    .page-title h2 {
+        font-size: 32px;
+    }
+
+    .visi,
+    .misi {
+        min-height: auto;
+    }
+
+    .header-kiri img {
+        width: 65px;
+        height: 65px;
+    }
+
+    .identitas h1 {
+        font-size: 22px;
+    }
+
+    nav {
+        gap: 18px;
+    }
+}
