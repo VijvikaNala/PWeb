@@ -1,0 +1,144 @@
+
+/* Reset dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Tampilan halaman */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    padding: 40px 20px;
+}
+
+/* Judul halaman */
+h1 {
+    text-align: center;
+    color: #1d4ed8;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+/* Kotak form */
+#formRegistrasi {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Setiap kelompok input */
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Label input */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Input dan dropdown */
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: #1e293b;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Efek saat input dipilih */
+input:focus,
+select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Tombol */
+button {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* Tombol daftar */
+button[type="submit"] {
+    background-color: #2563eb;
+    color: white;
+    margin-right: 8px;
+}
+
+button[type="submit"]:hover {
+    background-color: #1d4ed8;
+}
+
+/* Tombol reset */
+button[type="reset"] {
+    background-color: #e2e8f0;
+    color: #334155;
+}
+
+button[type="reset"]:hover {
+    background-color: #cbd5e1;
+}
+
+/* Tempat rekomendasi nama */
+#rekomendasiNama {
+    margin-top: 5px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+/* Setiap rekomendasi nama */
+.rekomendasi-item {
+    padding: 10px;
+    border-bottom: 1px solid #e2e8f0;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.rekomendasi-item:hover {
+    background-color: #eff6ff;
+}
+
+/* Hasil registrasi */
+#hasil {
+    max-width: 500px;
+    margin: 20px auto 0;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow-wrap: anywhere;
+}
+
+/* Tampilan layar kecil */
+@media (max-width: 480px) {
+    body {
+        padding: 25px 15px;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    #formRegistrasi {
+        padding: 20px;
+    }
+}
