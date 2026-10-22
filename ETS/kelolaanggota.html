@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Anggota | LibraryReg</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+    <div class="container">
+        <a class="navbar-brand brand-logo" href="index.html#beranda">
+            <img src="./Logo.png" alt="Logo LibraryReg" class="brand-image">
+            <span>LibraryReg</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Buka menu navigasi">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item"><a class="nav-link" href="index.html#beranda">Beranda</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#tentang">Tentang</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#layanan">Layanan</a></li>
+                <li class="nav-item"><a class="nav-link" href="daftaranggota.html">Daftar Anggota</a></li>
+                <li class="nav-item"><a class="nav-link" href="pendaftaran.html">Pendaftaran</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#footer">Kontak</a></li>
+                <li class="nav-item"><a class="nav-link login-link" href="login.html">Login Petugas</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section class="hero-section">
+        <div class="container">
+            <h1>Pengelolaan Anggota</h1>
+            <p class="hero-description">Kelola data anggota yang terdaftar di LibraryReg.</p>
+            <a href="pendaftaran.html" class="btn btn-primary-custom">Tambah Anggota</a>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Daftar Anggota</h2>
+            <p>Total anggota: <strong id="totalMembers">0</strong></p>
+
+            <input type="search" id="searchMember" class="form-control mb-3" placeholder="Cari nama atau NIM/NIP..." aria-label="Cari anggota">
+
+            <div id="message" class="alert d-none" role="status" aria-live="polite"></div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nama</th>
+                            <th>NIM/NIP</th>
+                            <th>Program Studi</th>
+                            <th>Jenis Anggota</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="memberTable"></tbody>
+                </table>
+            </div>
+
+            <p id="emptyMessage" class="text-muted d-none">
+                Belum ada data anggota. Silakan isi formulir pendaftaran terlebih dahulu.
+            </p>
+        </div>
+    </section>
+</main>
+
+<!-- Modal Detail dan Edit -->
+<div class="modal fade" id="memberModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="modalTitle">Detail Anggota</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer" id="modalFooter"></div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer-section">
+    <div class="container">
+        <div class="row g-4 align-items-start">
+            <div class="col-md-6">
+                <h3>LibraryReg</h3>
+                <p>Informasi dan layanan perpustakaan.</p>
+            </div>
+            <div class="col-md-6 footer-contact">
+                <p><strong>Email:</strong> <a href="mailto:LibraryReg@gmail.com">LibraryReg@gmail.com</a></p>
+                <p><strong>Alamat:</strong> Jalan Pustaka Raya No. 25, Surabaya</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const KEY = "libraryRegMembers";
+    const table = document.getElementById("memberTable");
+    const search = document.getElementById("searchMember");
+    const total = document.getElementById("totalMembers");
+    const empty = document.getElementById("emptyMessage");
+    const message = document.getElementById("message");
+    const modal = new bootstrap.Modal(document.getElementById("memberModal"));
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+    const modalFooter = document.getElementById("modalFooter");
+
+    let members = [];
+
+    function load() {
+        try {
+            const data = JSON.parse(localStorage.getItem(KEY) || "[]");
+            if (!Array.isArray(data)) throw new Error("Format data tidak valid");
+            members = data;
+            return true;
+        } catch {
+            notify("Data tidak dapat dibaca dari localStorage.", "danger");
+            return false;
+        }
+    }
+
+    function save() {
+        try {
+            localStorage.setItem(KEY, JSON.stringify(members));
+            return true;
+        } catch {
+            notify("Data gagal disimpan di browser.", "danger");
+            return false;
+        }
+    }
+
+    function notify(text, type = "success") {
+        message.textContent = text;
+        message.className = "alert alert-" + type;
+    }
+
+    function button(text, action, id, style) {
+        const el = document.createElement("button");
+        el.type = "button";
+        el.textContent = text;
+        el.className = "btn btn-sm " + style + " me-1 mb-1";
+        el.dataset.action = action;
+        el.dataset.id = id;
+        return el;
+    }
+
+    function render() {
+        table.replaceChildren();
+        total.textContent = members.length;
+
+        const term = search.value.trim().toLowerCase();
+        const filtered = members.filter(m =>
+            String(m.nama || "").toLowerCase().includes(term) ||
+            String(m.nimNip || "").toLowerCase().includes(term)
+        );
+
+        empty.classList.toggle("d-none", filtered.length > 0);
+
+        filtered.forEach((m, i) => {
+            const row = document.createElement("tr");
+
+            [i + 1, m.nama, m.nimNip, m.programStudi, m.jenisAnggota]
+                .forEach(value => {
+                    const td = document.createElement("td");
+                    td.textContent = value || "-";
+                    row.appendChild(td);
+                });
+
+            const actions = document.createElement("td");
+            actions.append(
+                button("Detail", "detail", m.id, "btn-outline-primary"),
+                button("Edit", "edit", m.id, "btn-outline-success"),
+                button("Hapus", "delete", m.id, "btn-outline-danger")
+            );
+
+            row.appendChild(actions);
+            table.appendChild(row);
+        });
+    }
+
+    function field(label, value) {
+        const p = document.createElement("p");
+        const strong = document.createElement("strong");
+        strong.textContent = label + ": ";
+        p.append(strong, document.createTextNode(value || "-"));
+        modalBody.appendChild(p);
+    }
+
+    function openDetail(m) {
+        modalTitle.textContent = "Detail Anggota";
+        modalBody.replaceChildren();
+        modalFooter.replaceChildren();
+
+        [
+            ["Nama", m.nama],
+            ["NIM/NIP", m.nimNip],
+            ["Program Studi", m.programStudi],
+            ["Alamat", m.alamat],
+            ["Nomor Telepon", m.telepon],
+            ["Email", m.email],
+            ["Jenis Keanggotaan", m.jenisAnggota]
+        ].forEach(([label, value]) => field(label, value));
+
+        const close = button("Tutup", "", "", "btn-secondary");
+        close.dataset.bsDismiss = "modal";
+        modalFooter.appendChild(close);
+        modal.show();
+    }
+
+    function openEdit(m) {
+        modalTitle.textContent = "Edit Data Anggota";
+        modalBody.replaceChildren();
+        modalFooter.replaceChildren();
+
+        const form = document.createElement("form");
+        form.className = "w-100";
+
+        const inputs = [
+            ["nama", "Nama Lengkap", "text"],
+            ["nimNip", "NIM/NIP", "text"],
+            ["programStudi", "Program Studi", "text"],
+            ["alamat", "Alamat", "text"],
+            ["telepon", "Nomor Telepon", "tel"],
+            ["email", "Email", "email"]
+        ];
+
+        inputs.forEach(([name, label, type]) => {
+            const group = document.createElement("div");
+            group.className = "mb-3";
+
+            const caption = document.createElement("label");
+            caption.className = "form-label";
+            caption.htmlFor = "edit-" + name;
+            caption.textContent = label;
+
+            const input = document.createElement(
+                name === "alamat" ? "textarea" : "input"
+            );
+            input.id = "edit-" + name;
+            input.name = name;
+            input.className = "form-control";
+            input.value = m[name] || "";
+            input.required = true;
+
+            if (type !== "text" || name !== "alamat") input.type = type;
+            if (name === "email") input.maxLength = 150;
+            if (name === "nimNip") input.maxLength = 30;
+            if (name === "telepon") {
+                input.pattern = "[0-9+() .-]{8,20}";
+                input.maxLength = 20;
+            }
+
+            group.append(caption, input);
+            form.appendChild(group);
+        });
+
+        const group = document.createElement("div");
+        group.className = "mb-3";
+
+        const label = document.createElement("label");
+        label.className = "form-label";
+        label.htmlFor = "edit-jenisAnggota";
+        label.textContent = "Jenis Keanggotaan";
+
+        const select = document.createElement("select");
+        select.id = "edit-jenisAnggota";
+        select.name = "jenisAnggota";
+        select.className = "form-select";
+        select.required = true;
+
+        ["Mahasiswa", "Dosen", "Tenaga Kependidikan", "Umum"].forEach(type => {
+            const option = document.createElement("option");
+            option.value = type;
+            option.textContent = type;
+            select.appendChild(option);
+        });
+
+        select.value = m.jenisAnggota || "Mahasiswa";
+        group.append(label, select);
+        form.appendChild(group);
+        modalBody.appendChild(form);
+
+        const cancel = button("Batal", "", "", "btn-secondary");
+        cancel.dataset.bsDismiss = "modal";
+
+        const saveButton = button("Simpan", "", "", "btn-primary-custom");
+        saveButton.type = "submit";
+
+        modalFooter.append(cancel, saveButton);
+
+        form.addEventListener("submit", event => {
+            event.preventDefault();
+            if (!form.reportValidity()) return;
+
+            const updated = Object.fromEntries(new FormData(form));
+            updated.id = m.id;
+            updated.tanggalDaftar = m.tanggalDaftar;
+
+            const duplicate = members.some(other =>
+                String(other.id) !== String(m.id) &&
+                String(other.nimNip || "").trim().toLowerCase() ===
+                updated.nimNip.trim().toLowerCase()
+            );
+
+            if (duplicate) {
+                notify("NIM/NIP sudah digunakan anggota lain.", "warning");
+                return;
+            }
+
+            const previous = members;
+            members = members.map(other =>
+                String(other.id) === String(m.id) ? updated : other
+            );
+
+            if (!save()) {
+                members = previous;
+                return;
+            }
+
+            modal.hide();
+            render();
+            notify("Data anggota berhasil diperbarui.");
+        });
+
+        modal.show();
+    }
+
+    table.addEventListener("click", event => {
+        const btn = event.target.closest("button[data-action]");
+        if (!btn) return;
+
+        const member = members.find(m =>
+            String(m.id) === String(btn.dataset.id)
+        );
+
+        if (!member) {
+            notify("Data anggota tidak ditemukan.", "warning");
+            return;
+        }
+
+        if (btn.dataset.action === "detail") openDetail(member);
+        if (btn.dataset.action === "edit") openEdit(member);
+
+        if (btn.dataset.action === "delete") {
+            if (!confirm("Hapus data anggota " + member.nama + "?")) return;
+
+            const previous = members;
+            members = members.filter(m =>
+                String(m.id) !== String(member.id)
+            );
+
+            if (!save()) {
+                members = previous;
+                return;
+            }
+
+            render();
+            notify("Data anggota berhasil dihapus.");
+        }
+    });
+
+    search.addEventListener("input", render);
+
+    if (load()) render();
+});
+</script>
+
+</body>
+</html>
