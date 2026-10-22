@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     const navLinks = document.querySelectorAll(".navbar .nav-link");
     const navbarCollapse = document.getElementById("mainNavbar");
@@ -7,8 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.pathname.split("/").pop().toLowerCase() ||
         "index.html";
 
-    const isHomePage =
-        currentPage === "index.html" || currentPage === "";
+    const isHomePage = currentPage === "index.html";
 
     // Menutup navbar pada layar kecil setelah menu diklik
     navLinks.forEach(function (link) {
@@ -25,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Mengatur menu aktif untuk halaman landing page dan halaman terpisah
+    // Mengatur menu aktif
     function setActiveLink(activeLink) {
         navLinks.forEach(function (link) {
             link.classList.toggle("active", link === activeLink);
@@ -34,25 +32,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     navLinks.forEach(function (link) {
         const href = link.getAttribute("href");
-
         if (!href) return;
 
-        // Menu yang menuju bagian di landing page
-        if (isHomePage && href.startsWith("#")) {
+        const linkUrl = new URL(href, window.location.href);
+        const linkPage = linkUrl.pathname.split("/").pop().toLowerCase();
+
+        if (isHomePage && linkUrl.hash) {
             link.addEventListener("click", function () {
                 setActiveLink(link);
             });
-        } else if (!isHomePage && !href.startsWith("#")) {
-            // Menu halaman terpisah: Daftar Anggota, Pendaftaran, Login
-            const linkPage = href.split("#")[0].toLowerCase();
-
-            if (linkPage === currentPage) {
-                setActiveLink(link);
-            }
+        } else if (!isHomePage && linkPage === currentPage) {
+            setActiveLink(link);
         }
     });
 
-    // Bagian landing page, termasuk footer untuk menu Kontak
+    // Mengaktifkan menu sesuai bagian landing page yang terlihat
     const sectionIds = ["beranda", "tentang", "layanan", "footer"];
 
     const sections = sectionIds
@@ -61,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .filter(Boolean);
 
-    // Mengaktifkan menu sesuai bagian yang terlihat saat scroll
     if (isHomePage && "IntersectionObserver" in window) {
         const observer = new IntersectionObserver(
             function (entries) {
@@ -80,9 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         '.navbar .nav-link[href="#' + sectionId + '"]'
                     );
 
-                    if (activeLink) {
-                        setActiveLink(activeLink);
-                    }
+                    if (activeLink) setActiveLink(activeLink);
                 }
             },
             {
@@ -96,27 +87,32 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Menampilkan tahun jika elemen tersedia
+    // Menampilkan tahun jika elemennya tersedia
     const currentYear = document.getElementById("currentYear");
 
     if (currentYear) {
         currentYear.textContent = new Date().getFullYear();
     }
 
-    // Simulasi login petugas jika form tersedia
+    // Simulasi login: hanya dijalankan jika form tersedia
     const loginForm = document.getElementById("loginForm");
     const loginMessage = document.getElementById("loginMessage");
+    const managementLink = document.getElementById("managementLink");
 
     if (loginForm && loginMessage) {
         loginForm.addEventListener("submit", function (event) {
             event.preventDefault();
 
             loginMessage.textContent =
-                "Simulasi berhasil dijalankan. Sistem login belum terhubung ke server.";
+                "Simulasi login berhasil. Silakan lanjut ke pengelolaan anggota.";
 
-            loginMessage.style.color = "#064675";
+            loginMessage.className = "login-message text-success mt-3";
 
-            loginForm.reset();
+            if (managementLink) {
+                managementLink.classList.remove("d-none");
+            }
+
+            // Form tidak di-reset agar pesan dan isian tetap terlihat
         });
     }
 });
