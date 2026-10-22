@@ -31,17 +31,15 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
         <div class="container">
 
-            <!-- Logo -->
             <a class="navbar-brand brand-logo" href="index.html#beranda">
                 <img
-                    src="Logo.png"
+                    src="./Logo.png"
                     alt="Logo LibraryReg"
                     class="brand-image"
                 >
                 <span>LibraryReg</span>
             </a>
 
-            <!-- Tombol Navbar Mobile -->
             <button
                 class="navbar-toggler"
                 type="button"
@@ -54,7 +52,6 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Menu Navigasi -->
             <div class="collapse navbar-collapse" id="mainNavbar">
                 <ul class="navbar-nav ms-auto align-items-lg-center">
 
@@ -83,7 +80,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="pendaftaran.html">
+                        <a
+                            class="nav-link active"
+                            href="pendaftaran.html"
+                            aria-current="page"
+                        >
                             Pendaftaran
                         </a>
                     </li>
@@ -106,7 +107,6 @@
         </div>
     </nav>
 
-    <!-- Konten Utama -->
     <main>
 
         <!-- Hero Pendaftaran -->
@@ -116,15 +116,15 @@
                 <h1>Pendaftaran Anggota</h1>
 
                 <p class="hero-description">
-                    Pelajari langkah-langkah pendaftaran untuk mendapatkan
-                    informasi keanggotaan perpustakaan LibraryReg.
+                    Lengkapi formulir berikut untuk melakukan simulasi
+                    pendaftaran anggota perpustakaan LibraryReg.
                 </p>
 
                 <a
-                    href="#langkah-pendaftaran"
+                    href="#form-pendaftaran"
                     class="btn btn-primary-custom"
                 >
-                    Lihat Langkah Pendaftaran
+                    Isi Formulir Pendaftaran
                 </a>
 
             </div>
@@ -139,122 +139,193 @@
                 </h2>
 
                 <p>
-                    Calon anggota dapat menghubungi pihak perpustakaan
-                    untuk memperoleh informasi mengenai prosedur,
-                    persyaratan, dan dokumen yang diperlukan.
-                </p>
-
-                <p>
-                    Pastikan informasi yang dibutuhkan telah dipahami
-                    sebelum melanjutkan proses pendaftaran.
+                    Calon anggota diminta melengkapi data diri dengan benar
+                    agar informasi keanggotaan dapat dicatat dengan baik.
+                    Pastikan seluruh kolom wajib telah diisi sebelum
+                    mengirimkan formulir.
                 </p>
 
             </div>
         </section>
 
-        <!-- Langkah Pendaftaran -->
+        <!-- Formulir Pendaftaran -->
         <section
-            id="langkah-pendaftaran"
+            id="form-pendaftaran"
             class="services-section page-section"
         >
             <div class="container">
 
-                <h2 class="section-title">
-                    Langkah Pendaftaran
-                </h2>
+                <div class="login-card registration-form-card">
 
-                <div class="row g-4">
+                    <h2 class="section-title">
+                        Formulir Pendaftaran Anggota
+                    </h2>
 
-                    <div class="col-md-4">
-                        <article class="service-card h-100">
-                            <h3>01. Cari Informasi</h3>
+                    <p class="text-muted mb-4">
+                        Kolom bertanda <span aria-hidden="true">*</span>
+                        wajib diisi.
+                    </p>
 
-                            <p>
-                                Hubungi pihak perpustakaan untuk mengetahui
-                                persyaratan dan ketentuan pendaftaran
-                                anggota yang berlaku.
-                            </p>
-                        </article>
-                    </div>
+                    <form id="registrationForm">
 
-                    <div class="col-md-4">
-                        <article class="service-card h-100">
-                            <h3>02. Siapkan Dokumen</h3>
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">
+                                Nama Lengkap *
+                            </label>
 
-                            <p>
-                                Persiapkan identitas diri dan dokumen lain
-                                sesuai ketentuan yang diberikan oleh
-                                pihak perpustakaan.
-                            </p>
-                        </article>
-                    </div>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nama"
+                                name="nama"
+                                placeholder="Masukkan nama lengkap"
+                                autocomplete="name"
+                                maxlength="100"
+                                required
+                            >
+                        </div>
 
-                    <div class="col-md-4">
-                        <article class="service-card h-100">
-                            <h3>03. Ikuti Prosedur</h3>
+                        <div class="mb-3">
+                            <label for="nimNip" class="form-label">
+                                NIM/NIP *
+                            </label>
 
-                            <p>
-                                Ikuti petunjuk pendaftaran dari petugas
-                                dan lengkapi proses sesuai ketentuan
-                                perpustakaan.
-                            </p>
-                        </article>
-                    </div>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nimNip"
+                                name="nimNip"
+                                placeholder="Masukkan NIM atau NIP"
+                                maxlength="30"
+                                required
+                            >
 
-                </div>
+                            <div class="form-text">
+                                NIM/NIP digunakan sebagai identitas unik
+                                dalam simulasi pendaftaran.
+                            </div>
+                        </div>
 
-            </div>
-        </section>
+                        <div class="mb-3">
+                            <label for="programStudi" class="form-label">
+                                Program Studi *
+                            </label>
 
-        <!-- Dokumen Pendaftaran -->
-        <section class="about-section">
-            <div class="container">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="programStudi"
+                                name="programStudi"
+                                placeholder="Masukkan program studi atau unit kerja"
+                                maxlength="100"
+                                required
+                            >
+                        </div>
 
-                <h2 class="section-title">
-                    Dokumen yang Perlu Disiapkan
-                </h2>
+                        <div class="mb-3">
+                            <label for="alamat" class="form-label">
+                                Alamat *
+                            </label>
 
-                <p>
-                    Dokumen yang diperlukan dapat berbeda sesuai
-                    kebijakan perpustakaan. Untuk menghindari kesalahan,
-                    konfirmasikan dokumen yang wajib dibawa kepada petugas.
-                </p>
+                            <textarea
+                                class="form-control"
+                                id="alamat"
+                                name="alamat"
+                                rows="3"
+                                placeholder="Masukkan alamat"
+                                maxlength="300"
+                                required
+                            ></textarea>
+                        </div>
 
-                <ul>
-                    <li>Identitas diri calon anggota.</li>
-                    <li>Data yang diperlukan untuk pendataan anggota.</li>
-                    <li>Dokumen tambahan sesuai ketentuan perpustakaan.</li>
-                </ul>
+                        <div class="mb-3">
+                            <label for="telepon" class="form-label">
+                                Nomor Telepon *
+                            </label>
 
-            </div>
-        </section>
+                            <input
+                                type="tel"
+                                class="form-control"
+                                id="telepon"
+                                name="telepon"
+                                placeholder="Contoh: 081234567890"
+                                autocomplete="tel"
+                                pattern="[0-9+() .-]{8,20}"
+                                maxlength="20"
+                                title="Masukkan nomor telepon 8–20 karakter berupa angka atau tanda +, -, (, ), dan spasi."
+                                required
+                            >
+                        </div>
 
-        <!-- Informasi Kontak -->
-        <section class="registration-section">
-            <div class="container">
-                <div class="row align-items-center g-3">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">
+                                Email *
+                            </label>
 
-                    <div class="col-md-9">
-                        <h2 class="section-title">
-                            Butuh Informasi Lebih Lanjut?
-                        </h2>
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                name="email"
+                                placeholder="nama@email.com"
+                                autocomplete="email"
+                                maxlength="150"
+                                required
+                            >
+                        </div>
 
-                        <p>
-                            Hubungi pihak perpustakaan untuk memperoleh
-                            informasi lengkap mengenai pendaftaran anggota.
-                        </p>
-                    </div>
+                        <div class="mb-4">
+                            <label for="jenisAnggota" class="form-label">
+                                Jenis Keanggotaan *
+                            </label>
 
-                    <div class="col-md-3 text-md-end">
-                        <a
-                            href="index.html#footer"
-                            class="btn btn-primary-custom"
+                            <select
+                                class="form-select"
+                                id="jenisAnggota"
+                                name="jenisAnggota"
+                                required
+                            >
+                                <option value="" selected disabled>
+                                    Pilih jenis keanggotaan
+                                </option>
+
+                                <option value="Mahasiswa">
+                                    Mahasiswa
+                                </option>
+
+                                <option value="Dosen">
+                                    Dosen
+                                </option>
+
+                                <option value="Tenaga Kependidikan">
+                                    Tenaga Kependidikan
+                                </option>
+
+                                <option value="Umum">
+                                    Umum
+                                </option>
+                            </select>
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary-custom w-100"
                         >
-                            Hubungi Kami
-                        </a>
-                    </div>
+                            Kirim Pendaftaran
+                        </button>
+
+                        <div
+                            id="registrationMessage"
+                            class="mt-3"
+                            role="status"
+                            aria-live="polite"
+                            tabindex="-1"
+                        ></div>
+
+                    </form>
 
                 </div>
+
             </div>
         </section>
 
@@ -298,6 +369,130 @@
 
     <!-- Custom JavaScript -->
     <script src="script.js"></script>
+
+    <!-- Logika Formulir Pendaftaran -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("registrationForm");
+            const message = document.getElementById("registrationMessage");
+            const storageKey = "libraryRegMembers";
+
+            if (!form || !message) return;
+
+            function showMessage(text, type) {
+                message.className = "mt-3 alert alert-" + type;
+                message.textContent = text;
+                message.focus();
+            }
+
+            function getMembers() {
+                try {
+                    const stored = localStorage.getItem(storageKey);
+
+                    if (!stored) return [];
+
+                    const members = JSON.parse(stored);
+
+                    if (!Array.isArray(members)) {
+                        throw new Error("Format data tidak valid.");
+                    }
+
+                    return members;
+                } catch (error) {
+                    throw new Error(
+                        "Data anggota tidak dapat dibaca dari browser."
+                    );
+                }
+            }
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                message.textContent = "";
+                message.className = "mt-3";
+
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+
+                const member = {
+                    id: Date.now().toString(),
+                    nama: form.elements["nama"].value.trim(),
+                    nimNip: form.elements["nimNip"].value.trim(),
+                    programStudi: form.elements["programStudi"].value.trim(),
+                    alamat: form.elements["alamat"].value.trim(),
+                    telepon: form.elements["telepon"].value.trim(),
+                    email: form.elements["email"].value.trim(),
+                    jenisAnggota: form.elements["jenisAnggota"].value,
+                    tanggalDaftar: new Date().toISOString()
+                };
+
+                const requiredValues = [
+                    member.nama,
+                    member.nimNip,
+                    member.programStudi,
+                    member.alamat,
+                    member.telepon,
+                    member.email,
+                    member.jenisAnggota
+                ];
+
+                if (requiredValues.some(value => !value)) {
+                    showMessage(
+                        "Semua kolom wajib harus diisi.",
+                        "danger"
+                    );
+                    return;
+                }
+
+                let members;
+
+                try {
+                    members = getMembers();
+                } catch (error) {
+                    showMessage(error.message, "danger");
+                    return;
+                }
+
+                const duplicate = members.some(function (existing) {
+                    return String(existing.nimNip || "").trim().toLowerCase()
+                        === member.nimNip.toLowerCase();
+                });
+
+                if (duplicate) {
+                    showMessage(
+                        "NIM/NIP tersebut sudah terdaftar. Gunakan identitas lain.",
+                        "warning"
+                    );
+
+                    form.elements["nimNip"].focus();
+                    return;
+                }
+
+                try {
+                    members.push(member);
+
+                    localStorage.setItem(
+                        storageKey,
+                        JSON.stringify(members)
+                    );
+
+                    showMessage(
+                        "Pendaftaran berhasil disimpan pada browser ini. " +
+                        "Ini merupakan simulasi dan belum mengirim data ke server.",
+                        "success"
+                    );
+
+                    form.reset();
+                } catch (error) {
+                    showMessage(
+                        "Data gagal disimpan. Penyimpanan browser mungkin tidak tersedia atau penuh.",
+                        "danger"
+                    );
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
