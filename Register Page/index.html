@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register Page | PWeb</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <style>
+        :root {
+            --navy: #123f70;
+            --blue: #1469e8;
+            --background: #eef3f8;
+            --text: #243447;
+            --muted: #718096;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 16px;
+            background: var(--background);
+            font-family: Arial, sans-serif;
+            color: var(--text);
+        }
+
+        .register-card {
+            width: 100%;
+            max-width: 540px;
+            padding: 36px;
+            background: #ffffff;
+            border: 1px solid #e1e8f0;
+            border-radius: 14px;
+            box-shadow: 0 8px 28px rgba(18, 63, 112, 0.08);
+        }
+
+        .brand {
+            margin-bottom: 28px;
+            color: var(--navy);
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            display: inline-flex;
+            width: 34px;
+            height: 34px;
+            margin-right: 8px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9px;
+            background: var(--blue);
+            color: white;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+            color: var(--navy);
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            margin-bottom: 26px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .form-label {
+            margin-bottom: 7px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            min-height: 44px;
+            border-color: #d8e1eb;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .form-control:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(20, 105, 232, 0.12);
+        }
+
+        .form-check-label {
+            color: #58677a;
+            font-size: 13px;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--blue);
+            border-color: var(--blue);
+        }
+
+        .terms-link,
+        .signin-link {
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        .terms-link:hover,
+        .signin-link:hover {
+            text-decoration: underline;
+        }
+
+        .btn-register {
+            min-height: 46px;
+            border: none;
+            border-radius: 8px;
+            background: var(--blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        .btn-register:hover {
+            background: #1054bd;
+            color: white;
+        }
+
+        .signin-text {
+            margin: 22px 0 0;
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        #formMessage {
+            font-size: 13px;
+        }
+
+        @media (max-width: 480px) {
+            .register-card {
+                padding: 26px 20px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="register-card">
+
+        <h1>Create Account</h1>
+        <p class="subtitle">
+            Create your account to get started.
+            Please complete the form below.
+        </p>
+
+        <form id="registerForm">
+
+            <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                    <label for="firstName" class="form-label">
+                        First Name
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        placeholder="First name"
+                        required
+                    >
+                </div>
+
+                <div class="col-sm-6">
+                    <label for="lastName" class="form-label">
+                        Last Name
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        placeholder="Last name"
+                        required
+                    >
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="displayName" class="form-label">
+                    Display Name
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="displayName"
+                    placeholder="Choose a display name"
+                    required
+                >
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">
+                    Email Address
+                </label>
+                <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="you@example.com"
+                    required
+                >
+            </div>
+
+            <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                    <label for="password" class="form-label">
+                        Password
+                    </label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        placeholder="At least 8 characters"
+                        minlength="8"
+                        required
+                    >
+                </div>
+
+                <div class="col-sm-6">
+                    <label for="confirmPassword" class="form-label">
+                        Confirm Password
+                    </label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="confirmPassword"
+                        placeholder="Repeat password"
+                        minlength="8"
+                        required
+                    >
+                </div>
+            </div>
+
+            <div class="form-check mb-4">
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="agree"
+                    required
+                >
+                <label class="form-check-label" for="agree">
+                    I agree to the
+                    <a href="#terms" class="terms-link">
+                        Terms and Conditions
+                    </a>.
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-register w-100">
+                Create Account
+            </button>
+
+            <p id="formMessage" class="text-center mt-3 mb-0"
+               aria-live="polite"></p>
+
+        </form>
+
+        <p class="signin-text">
+            Already have an account?
+            <a href="../Login%20Page/" class="signin-link">
+                Sign In
+            </a>
+        </p>
+
+    </main>
+
+    <script>
+        const form = document.getElementById("registerForm");
+        const password = document.getElementById("password");
+        const confirmPassword =
+            document.getElementById("confirmPassword");
+        const message = document.getElementById("formMessage");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            if (password.value !== confirmPassword.value) {
+                confirmPassword.setCustomValidity(
+                    "Password dan konfirmasi password harus sama."
+                );
+                confirmPassword.reportValidity();
+                confirmPassword.setCustomValidity("");
+                return;
+            }
+
+            message.textContent =
+                "Form berhasil divalidasi! Registrasi belum terhubung ke server.";
+            message.className =
+                "text-center text-success mt-3 mb-0";
+        });
+    </script>
+
+</body>
+</html>
