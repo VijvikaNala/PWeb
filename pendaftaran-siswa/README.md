@@ -1,17 +1,21 @@
-1. Website Pendaftaran Siswa Baru
+# Website Pendaftaran Siswa Baru
+
 Aplikasi berbasis web untuk mengelola data pendaftaran calon siswa baru di SMK Coding. Aplikasi ini dibuat menggunakan PHP dan MySQL dengan menerapkan konsep CRUD (Create, Read, Update, Delete).
 
-A.Deskripsi
+## Deskripsi
+
 Website Pendaftaran Siswa Baru memungkinkan pengguna untuk memasukkan data calon siswa melalui formulir pendaftaran. Data yang telah dimasukkan dapat ditampilkan, diperbarui, dan dihapus melalui halaman pengelolaan data siswa.
 
-B. Fitur
+## Fitur
+
 - Formulir pendaftaran calon siswa.
 - Menampilkan daftar siswa yang sudah mendaftar.
 - Mengubah data calon siswa.
 - Menghapus data calon siswa.
 - Menyimpan data menggunakan database MySQL.
 
-C. Teknologi yang Digunakan
+## Teknologi yang Digunakan
+
 - HTML
 - PHP
 - MySQL / MariaDB
@@ -19,7 +23,9 @@ C. Teknologi yang Digunakan
 - phpMyAdmin
 - Apache
 
-D. Struktur File
+## Struktur File
+
+```text
 pendaftaran-siswa/
 ├── form-daftar.php
 ├── form-edit.php
@@ -30,8 +36,10 @@ pendaftaran-siswa/
 ├── proses-edit.php
 ├── proses-pendaftaran.php
 └── pendaftaran_siswa.sql
+```
 
-E. Cara Menjalankan Aplikasi
+## Cara Menjalankan Aplikasi
+
 1. Install XAMPP pada komputer.
 2. Salin folder project ke dalam direktori `C:\xampp\htdocs\`.
 3. Jalankan Apache dan MySQL melalui XAMPP Control Panel.
@@ -40,10 +48,15 @@ E. Cara Menjalankan Aplikasi
 6. Import file `pendaftaran_siswa.sql` ke database tersebut.
 7. Pastikan konfigurasi koneksi database pada `koneksi.php` sudah sesuai.
 8. Buka browser dan akses:
-http://localhost/pendaftaran-siswa/
 
-F. Database
+```
+http://localhost/pendaftaran-siswa/
+```
+
+## Database
+
 Nama database: `pendaftaran_siswa`
+
 Nama tabel: `calon_siswa`
 
 Data yang disimpan meliputi:
@@ -55,4 +68,5 @@ Data yang disimpan meliputi:
 - Sekolah Asal
 
 Repository ini dikembangkan sebagai bagian dari latihan pengembangan website menggunakan PHP dan MySQL, dengan mengacu pada tutorial Petani Kode.
+
 Referensi: https://github.com/petanikode/tutorial-php-mysql
